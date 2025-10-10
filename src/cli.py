@@ -1,11 +1,13 @@
+"""
+Command Line Interface for Calculator
+Example: python -m src.cli add 5 3
+"""
 import sys
 import os
 import click
 
-# Fix import path
-current_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.dirname(current_dir)
-sys.path.insert(0, parent_dir)
+# Add the parent directory to Python path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from calculator import add, subtract, multiply, divide, power, square_root
 
