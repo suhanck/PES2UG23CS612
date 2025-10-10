@@ -1,35 +1,38 @@
 """
 Command Line Interface for Calculator
-Example: python -m src.cli add 5 3
+Example: python src/cli.py add 5 3
 """
+
 import sys
 import os
 import click
 
-# Add the parent directory to Python path so we can import from src
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Fix import path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.insert(0, parent_dir)
 
-from calculator import add, subtract, multiply, divide, power, square_root
+from src.calculator import add, subtract, multiply, divide, power, square_root
 
 
 @click.command()
-@click.argument('operation')
-@click.argument('num1', type=float)
-@click.argument('num2', type=float, required=False)
+@click.argument("operation")
+@click.argument("num1", type=float)
+@click.argument("num2", type=float, required=False)
 def calculate(operation, num1, num2=None):
     """Simple calculator CLI"""
     try:
-        if operation == 'add':
+        if operation == "add":
             result = add(num1, num2)
-        elif operation == 'subtract':
+        elif operation == "subtract":
             result = subtract(num1, num2)
-        elif operation == 'multiply':
+        elif operation == "multiply":
             result = multiply(num1, num2)
-        elif operation == 'divide':
+        elif operation == "divide":
             result = divide(num1, num2)
-        elif operation == 'power':
+        elif operation == "power":
             result = power(num1, num2)
-        elif operation in ('square_root', 'sqrt'):
+        elif operation in ("square_root", "sqrt"):
             result = square_root(num1)
         else:
             click.echo(f"Unknown operation: {operation}")
@@ -40,7 +43,7 @@ def calculate(operation, num1, num2=None):
             click.echo(int(result))
         else:
             click.echo(f"{result:.2f}")
-            
+
     except ValueError as e:
         click.echo(f"Error: {e}")
         sys.exit(1)
@@ -49,5 +52,5 @@ def calculate(operation, num1, num2=None):
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     calculate()
