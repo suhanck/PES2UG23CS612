@@ -52,10 +52,8 @@ class TestCLIIntegration:
         assert result.returncode == 0
         assert result.stdout.strip() == "4"
 
-    
-
     def test_cli_square_root_alias_integration(self):
-        
+        """Test CLI can perform square root with alias"""
         result = self.run_cli("square_root", "25")
         assert result.returncode == 0
         assert result.stdout.strip() == "5"

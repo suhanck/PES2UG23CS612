@@ -1,8 +1,3 @@
-"""
-Command Line Interface for Calculator
-Example: python src/cli.py add 5 3
-"""
-
 import sys
 import os
 import click
@@ -12,7 +7,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.insert(0, parent_dir)
 
-from src.calculator import add, subtract, multiply, divide, power, square_root
+from calculator import add, subtract, multiply, divide, power, square_root
 
 
 @click.command()
